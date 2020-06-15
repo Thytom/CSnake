@@ -6,4 +6,8 @@
 #include <time.h>
 #include <ncurses.h>
 
+#include "snake.h"
+
+
+
 #endif
