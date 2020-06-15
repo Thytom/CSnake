@@ -8,9 +8,6 @@ int main(int argc, char *argv[])
 	timeout(0);
 	curs_set(0);
 
-	const struct timespec frame[] = {
-		{0, 1000000000/FRAMERATE}
-	};
 
 	int term_x;
 	int term_y;
@@ -24,18 +21,28 @@ int main(int argc, char *argv[])
 
 	while(game_state != FINISHED)
 	{
+		clock_t initial_time = clock();
+
+		int direction = CURRENT_DIRECTION;
 		switch(input = getch())
 		{
-			case CSNAKE_OPT_MOVE_UP: break;
-			case CSNAKE_OPT_MOVE_DOWN: break;
-			case CSNAKE_OPT_MOVE_LEFT: break;
-			case CSNAKE_OPT_MOVE_RIGHT: break;
+			case CSNAKE_OPT_MOVE_UP: direction = UP; break;
+			case CSNAKE_OPT_MOVE_DOWN: direction = DOWN; break;
+			case CSNAKE_OPT_MOVE_LEFT: direction = LEFT; break;
+			case CSNAKE_OPT_MOVE_RIGHT: direction = RIGHT; break;
 			case CSNAKE_OPT_EXIT: game_state = FINISHED;
-			default : break;
+			default: break;
 		}
-
-		clear();
+		clear_snake(stdscr, snake);
+		move_snake(snake, direction);
 		draw_snake(stdscr, snake);
+
+		int ticks = (clock() - initial_time);
+		float seconds = ticks / CLOCKS_PER_SEC;
+		int nanosecs = 1000000000 * seconds;
+		const struct timespec frame[] = {
+			{0, (1000000000/FRAMERATE) - nanosecs}
+		};
 		nanosleep(frame, NULL);
 	}
 

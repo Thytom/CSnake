@@ -24,12 +24,41 @@ snake_t* create_snake(const int start_x, const int start_y,
 
 void free_snake(snake_t* s)
 {
-
+	free(s->body);
+	free(s);
 }
 
 void move_snake(snake_t* s, const int direction)
 {
+	if(direction != CURRENT_DIRECTION)
+	{
+		if(!((direction == LEFT && s->direction == RIGHT)
+					|| (direction == RIGHT && s->direction == LEFT)
+					|| (direction == UP && s->direction == DOWN)
+					|| (direction == DOWN && s->direction == UP)))
+		 {
+			s->direction = direction;
+		 }
+	}
 
+	for(int i = (s->length - 1); i > 0; i--)
+	{
+		if(s->body[i - 1].x != NODE_EMPTY) // Ignore until we find something with something in
+		{
+			s->body[i].x = s->body[i-1].x;
+			s->body[i].y = s->body[i-1].y;
+		}
+	}
+
+	node_t *head = s->body;
+	int dir = s->direction;
+	switch(dir)
+	{
+		case UP 	: head->y -= SPEED; break;
+		case DOWN	: head->y += SPEED; break;
+		case LEFT	: head->x -= SPEED; break;
+		case RIGHT	: head->x += SPEED; break;
+	}
 }
 
 void grow_snake(snake_t* s, const int amount)
@@ -50,3 +79,15 @@ void draw_snake(WINDOW *win, const snake_t* s)
 	}
 }
 
+void clear_snake(WINDOW *win, const snake_t* s)
+{
+	node_t current;
+	for(int i = 0; i < s->length; i++)
+	{
+		current = s->body[i];
+		if(current.x != NODE_EMPTY && current.y != NODE_EMPTY)
+		{
+			mvwaddch(win, current.y, current.x, ' ');
+		}
+	}
+}

@@ -11,7 +11,7 @@
 #define RUNNING 0
 #define FINISHED 1
 
-#define FRAMERATE 60
+#define FRAMERATE 25
 
 #define CSNAKE_OPT_EXIT			'q'
 #define CSNAKE_OPT_MOVE_UP		'w'
