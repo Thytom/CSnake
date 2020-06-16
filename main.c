@@ -22,6 +22,8 @@ int main(int argc, char *argv[])
 
 	while(game_state != FINISHED)
 	{
+		getmaxyx(stdscr, term_y, term_x);
+
 		clock_t initial_time = clock();
 
 		int direction = CURRENT_DIRECTION;
