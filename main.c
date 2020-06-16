@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 		move_snake_wrap(snake, direction, term_x, term_y);
 		draw_snake(stdscr, snake);
 
-		if(check_collision(snake, apple, HEAD_COL))
+		if(collides(*snake->body, *apple))
 		{
 			grow_snake(snake, 1);
 			move_apple(snake, apple, term_x, term_y);

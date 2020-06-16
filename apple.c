@@ -9,7 +9,7 @@ void move_apple(const snake_t *s, node_t *apple
 	{
 		apple->x = rand() % term_x;
 		apple->y = rand() % term_y;
-	} while(check_collision(s, apple, FULL_COL) == 1);
+	} while(check_collision(s->body, s->length, apple) == 1);
 }
 
 node_t *new_apple(const snake_t *s, const int term_x, const int term_y)
@@ -19,22 +19,19 @@ node_t *new_apple(const snake_t *s, const int term_x, const int term_y)
 	return apple;
 }
 
-int check_collision(const snake_t *s, const node_t *apple, const int col_type)
+int check_collision(const node_t *node_list, const int length, const node_t *node)
 {
-	if(s == NULL || apple == NULL)
-		return 0;
-
-	if(s->body[0].x == apple->x
-			&& s->body[0].y == apple->y)
-		return 1;
-
-	if(col_type == FULL_COL)
-	{
-		for(int i = 1; i < s->length; i++)
-			if(s->body[i].x == apple->x
-					&& s->body[i].y == apple->y)
-				return 1;
-	}
+	for(int i = 1; i < length; i++)
+		if(collides(node_list[i], *node))
+			return 1;
 
 	return 0;
+}
+
+int collides(const node_t a, const node_t b)
+{
+	if(a.x == b.x && a.y == b.y)
+		return 1;
+	else
+		return 0;
 }
