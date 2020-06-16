@@ -45,7 +45,11 @@ int main(int argc, char *argv[])
 			grow_snake(snake, 1);
 			move_apple(snake, apple, term_x, term_y);
 			score++;
+		}else if(check_collision((&snake->body[1]), snake->length - 1, snake->body))
+		{
+			game_state = FINISHED;
 		}
+
 		mvaddch(apple->y, apple->x, '@');
 
 		int ticks = (clock() - initial_time);
