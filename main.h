@@ -7,6 +7,7 @@
 #include <ncurses.h>
 
 #include "snake.h"
+#include "collision.h"
 #include "apple.h"
 
 #define RUNNING 0
