@@ -1,6 +1,6 @@
 # CSNAKE
 
-A small terminal game of C.
+A small terminal snake game, written in C.
 
 ## Comment
 
