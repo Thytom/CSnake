@@ -1,7 +1,7 @@
 #include "apple.h"
 
 void move_apple(const snake_t *s, node_t *apple
-		, const int term_x, const int term_y)
+		, int term_x, int term_y)
 {
 	if(s->body == NULL || apple == NULL)
 		return;
@@ -12,7 +12,7 @@ void move_apple(const snake_t *s, node_t *apple
 	} while(check_collision(s->body, s->length, apple) == 1);
 }
 
-node_t *new_apple(const snake_t *s, const int term_x, const int term_y)
+node_t *new_apple(const snake_t *s, int term_x, int term_y)
 {
 	node_t *apple = malloc(sizeof(node_t));
 	move_apple(s, apple, term_x, term_y);

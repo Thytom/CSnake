@@ -29,15 +29,15 @@ typedef struct snake {
 	node_t* body;
 } snake_t ;
 
-snake_t* create_snake(const int start_x, const int start_y,
-		const int start_direction, const int start_length);
+snake_t* create_snake(int start_x, int start_y,
+		int start_direction, int start_length);
 void free_snake(snake_t* s);
 
-void move_snake(snake_t* s, const int direction);
-void move_snake_wrap(snake_t* s, const int direction
-		, const int term_x, const int term_y);
+void move_snake_wrap(snake_t* s, int direction
+		, int term_x, int term_y);
+void move_snake(snake_t* s, int direction);
 
-void grow_snake(snake_t* s, const int amount);
+void grow_snake(snake_t* s, int amount);
 void draw_snake(WINDOW *win, const snake_t* s);
 void clear_snake(WINDOW *win, const snake_t* s);
 

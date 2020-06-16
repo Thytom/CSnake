@@ -1,7 +1,7 @@
 #include "snake.h"
 
-snake_t* create_snake(const int start_x, const int start_y,
-		const int start_direction, const int start_length)
+snake_t* create_snake(int start_x, int start_y,
+		int start_direction, int start_length)
 {
 	snake_t* new_snake = malloc(sizeof(snake_t));
 
@@ -28,7 +28,8 @@ void free_snake(snake_t* s)
 	free(s);
 }
 
-void move_snake_wrap(snake_t* s, const int direction, const int term_x, const int term_y)
+void move_snake_wrap(snake_t* s, int direction
+		, int term_x, int term_y)
 {
 	move_snake(s, direction);
 
@@ -44,7 +45,7 @@ void move_snake_wrap(snake_t* s, const int direction, const int term_x, const in
 }
 
 
-void move_snake(snake_t* s, const int direction)
+void move_snake(snake_t* s, int direction)
 {
 	if(direction != CURRENT_DIRECTION)
 	{
@@ -77,7 +78,7 @@ void move_snake(snake_t* s, const int direction)
 	}
 }
 
-void grow_snake(snake_t* s, const int amount)
+void grow_snake(snake_t* s, int amount)
 {
 	s->body = realloc(s->body, (s->length += amount) * sizeof(node_t));
 }
