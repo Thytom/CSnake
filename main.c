@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 	snake_t *snake = create_snake(term_x / 2, term_y / 2,
 			DEFAULT_SNAKE_START_DIR, DEFAULT_SNAKE_START_LEN);
 	node_t *apple = new_apple(snake, term_x, term_y);
-
+	int score = 0;
 	char input;
 
 	while(game_state != FINISHED)
@@ -42,6 +42,7 @@ int main(int argc, char *argv[])
 		{
 			grow_snake(snake, 1);
 			move_apple(snake, apple, term_x, term_y);
+			score++;
 		}
 		mvaddch(apple->y, apple->x, '@');
 
@@ -54,9 +55,11 @@ int main(int argc, char *argv[])
 		nanosleep(frame, NULL);
 	}
 
+	endwin();
+
+	printf("Game Over! Final Score: %d\n", score);
+
 	free_snake(snake);
 	free(apple);
-
-	endwin();
 	return 0;
 }
