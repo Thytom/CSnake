@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
 
 		if(check_collision(snake, apple, HEAD_COL))
 		{
+			grow_snake(snake, 1);
 			move_apple(snake, apple, term_x, term_y);
 		}
 		mvaddch(apple->y, apple->x, '@');

@@ -63,7 +63,7 @@ void move_snake(snake_t* s, const int direction)
 
 void grow_snake(snake_t* s, const int amount)
 {
-
+	s->body = realloc(s->body, (s->length += amount) * sizeof(node_t));
 }
 
 void draw_snake(WINDOW *win, const snake_t* s)
