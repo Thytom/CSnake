@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -O2 -g -Wall -lncurses
-DEP = main.h snake.h
-OBJ = main.o snake.o
+DEP = main.h snake.h apple.h
+OBJ = main.o snake.o apple.o
 
 EXECUTABLE=CSnake
 
