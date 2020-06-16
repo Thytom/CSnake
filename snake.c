@@ -28,6 +28,22 @@ void free_snake(snake_t* s)
 	free(s);
 }
 
+void move_snake_wrap(snake_t* s, const int direction, const int term_x, const int term_y)
+{
+	move_snake(s, direction);
+
+	if(s->body->x >= term_x)
+		s->body->x = 0;
+	else if(s->body->x < 0)
+		s->body->x = term_x - 1;
+
+	if(s->body->y >= term_y)
+		s->body->y = 0;
+	else if(s->body->y < 0)
+		s->body->y = term_y - 1;
+}
+
+
 void move_snake(snake_t* s, const int direction)
 {
 	if(direction != CURRENT_DIRECTION)

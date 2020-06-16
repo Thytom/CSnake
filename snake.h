@@ -32,7 +32,11 @@ typedef struct snake {
 snake_t* create_snake(const int start_x, const int start_y,
 		const int start_direction, const int start_length);
 void free_snake(snake_t* s);
+
 void move_snake(snake_t* s, const int direction);
+void move_snake_wrap(snake_t* s, const int direction
+		, const int term_x, const int term_y);
+
 void grow_snake(snake_t* s, const int amount);
 void draw_snake(WINDOW *win, const snake_t* s);
 void clear_snake(WINDOW *win, const snake_t* s);

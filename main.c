@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 			default: break;
 		}
 		clear_snake(stdscr, snake);
-		move_snake(snake, direction);
+		move_snake_wrap(snake, direction, term_x, term_y);
 		draw_snake(stdscr, snake);
 
 		if(check_collision(snake, apple, HEAD_COL))
